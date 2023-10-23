@@ -18,7 +18,7 @@
 		633AE7982ADD6E6000EB9573 /* Delivery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633AE7972ADD6E6000EB9573 /* Delivery.swift */; };
 		633AE79A2ADD6EA300EB9573 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633AE7992ADD6EA300EB9573 /* Meal.swift */; };
 		633AE79C2ADD6EE900EB9573 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633AE79B2ADD6EE900EB9573 /* Order.swift */; };
-		633AE7A02AE0896D00EB9573 /* MealNumHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633AE79F2AE0896D00EB9573 /* MealNumHandler.swift */; };
+		633AE7A02AE0896D00EB9573 /* RestaurantManagementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633AE79F2AE0896D00EB9573 /* RestaurantManagementViewModel.swift */; };
 		633AE7A22AE089A900EB9573 /* Checkout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633AE7A12AE089A900EB9573 /* Checkout.swift */; };
 		633AE7A42AE08A5500EB9573 /* ConfirmationMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633AE7A32AE08A5500EB9573 /* ConfirmationMenu.swift */; };
 		633AE7A62AE08A7A00EB9573 /* LoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633AE7A52AE08A7A00EB9573 /* LoginPage.swift */; };
@@ -59,7 +59,7 @@
 		633AE7972ADD6E6000EB9573 /* Delivery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delivery.swift; sourceTree = "<group>"; };
 		633AE7992ADD6EA300EB9573 /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
 		633AE79B2ADD6EE900EB9573 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
-		633AE79F2AE0896D00EB9573 /* MealNumHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealNumHandler.swift; sourceTree = "<group>"; };
+		633AE79F2AE0896D00EB9573 /* RestaurantManagementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantManagementViewModel.swift; sourceTree = "<group>"; };
 		633AE7A12AE089A900EB9573 /* Checkout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkout.swift; sourceTree = "<group>"; };
 		633AE7A32AE08A5500EB9573 /* ConfirmationMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationMenu.swift; sourceTree = "<group>"; };
 		633AE7A52AE08A7A00EB9573 /* LoginPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPage.swift; sourceTree = "<group>"; };
@@ -155,7 +155,7 @@
 		633AE7902ADD694800EB9573 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				633AE79F2AE0896D00EB9573 /* MealNumHandler.swift */,
+				633AE79F2AE0896D00EB9573 /* RestaurantManagementViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -315,7 +315,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				633AE7A42AE08A5500EB9573 /* ConfirmationMenu.swift in Sources */,
-				633AE7A02AE0896D00EB9573 /* MealNumHandler.swift in Sources */,
+				633AE7A02AE0896D00EB9573 /* RestaurantManagementViewModel.swift in Sources */,
 				633AE79C2ADD6EE900EB9573 /* Order.swift in Sources */,
 				633AE79A2ADD6EA300EB9573 /* Meal.swift in Sources */,
 				633AE7962ADD6A4400EB9573 /* Customer.swift in Sources */,

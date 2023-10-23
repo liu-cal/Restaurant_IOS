@@ -61,6 +61,6 @@ struct SignUpPage: View {
 
 struct SignUpPage_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        SignUpPage()
     }
 }

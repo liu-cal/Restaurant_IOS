@@ -10,7 +10,13 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         VStack {
-            LoginPage()
+            //LoginPage()
+            //Checkout()
+            //ConfirmationMenu()
+            //LoginPage()
+            //LandingPage()
+            //SignUpPage()
+            //OrderMenu()
         }
         .padding()
     }

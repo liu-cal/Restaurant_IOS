@@ -52,16 +52,14 @@ struct OrderMenu: View{
             
             Spacer()
             
-            Button(action: {
-                // Handle the checkout button action
-            }) {
-                Text("Checkout")
-                    .font(.title)
-                    .foregroundColor(.white)
-                    .frame(width: 200, height: 50)
-                    .background(Color.blue)
-                    .cornerRadius(10)
-            }
+            NavigationLink(destination: Checkout()) { // Use NavigationLink to navigate to CheckoutPage
+                                Text("Checkout")
+                                    .font(.title)
+                                    .foregroundColor(.white)
+                                    .frame(width: 200, height: 50)
+                                    .background(Color.blue)
+                                    .cornerRadius(10)
+                            }
         }
     }
 }

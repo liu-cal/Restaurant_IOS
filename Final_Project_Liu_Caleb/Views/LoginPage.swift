@@ -11,6 +11,8 @@ struct LoginPage: View {
     @State private var username = ""
     @State private var password = ""
 
+    @State private var loginSuccessful = false
+
     var body: some View {
         NavigationView {
             VStack {
@@ -25,7 +27,8 @@ struct LoginPage: View {
                 Button(action: {
                     // Add your login logic here
                     // You can check the entered username and password
-                    // If login is successful, navigate to the next view
+                    // If login is successful, set loginSuccessful to true
+                    loginSuccessful = true
                 }) {
                     Text("Log In")
                         .padding()
@@ -33,9 +36,8 @@ struct LoginPage: View {
                         .foregroundColor(.white)
                         .cornerRadius(10)
                 }
-
+                
                 Spacer()
-
             }
             .padding()
             .navigationBarTitle("Login")
@@ -43,6 +45,9 @@ struct LoginPage: View {
                 NavigationLink(destination: SignUpPage()) {
                     Text("Sign Up")
                 }
+            )
+            .background(
+                NavigationLink("", destination: OrderMenu(), isActive: $loginSuccessful)
             )
         }
     }

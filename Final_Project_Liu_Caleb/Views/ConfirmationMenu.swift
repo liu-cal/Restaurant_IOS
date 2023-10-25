@@ -13,7 +13,7 @@ struct ConfirmationMenu: View{
     
     var body: some View{
         VStack{
-            Spacer()
+                        Spacer()
                         
                         Text("Thank you for ordering at Liu's Restaurant!")
                             .font(.title)

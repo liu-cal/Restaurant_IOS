@@ -12,6 +12,7 @@ struct SignUpPage: View {
     @State private var lastName = ""
     @State private var username = ""
     @State private var password = ""
+    @State private var isShowingLoginPage = false
 
     var body: some View {
         NavigationView {
@@ -32,10 +33,10 @@ struct SignUpPage: View {
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
 
+                NavigationLink("", destination: LoginPage(), isActive: $isShowingLoginPage)
+                
                 Button(action: {
-                    // Add your sign-up logic here
-                    // You can create a new user account with the entered information
-                    // After successful sign-up, you can navigate to the next view
+                    isShowingLoginPage = true
                 }) {
                     Text("Sign Up")
                         .padding()
@@ -50,12 +51,13 @@ struct SignUpPage: View {
             .navigationBarTitle("Sign Up")
             .navigationBarItems(leading:
                 Button(action: {
-                    // Add a function to navigate back to the LoginPage
+                    isShowingLoginPage = true
+
                 }) {
                     Text("Back")
                 }
             )
-        }
+        }.navigationBarHidden(true)
     }
 }
 

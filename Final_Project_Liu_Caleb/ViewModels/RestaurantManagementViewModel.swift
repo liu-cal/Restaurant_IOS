@@ -24,12 +24,12 @@ final class RestaurantManagementViewModel: ObservableObject{
 //
 //    }
     
-    //goes to the Checkout page and passes it the meals that were selected
+    //passes the meals that were selected in the Checkout page
     func checkoutMeals(){
         
     }
     
-    //goes to the Confirmation menu and passes it the order information to display it back to user
+    //passes the order information to the ConfirmationMenu to display it back to user
     func payOrder(){
         
     }
@@ -44,13 +44,4 @@ final class RestaurantManagementViewModel: ObservableObject{
 //
 //    }
     
-//    //goes back to the landing page
-//    func backToMenu(){
-//
-//    }
-//
-//    //goes back to the meals page
-//    func keepShopping(){
-//
-//    }
 }

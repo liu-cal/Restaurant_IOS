@@ -47,9 +47,10 @@ struct LoginPage: View {
                 }
             )
             .background(
-                NavigationLink("", destination: OrderMenu(), isActive: $loginSuccessful)
+                NavigationLink("", destination: LandingPage(), isActive: $loginSuccessful)
             )
         }
+        .navigationBarHidden(true)
     }
 }
 

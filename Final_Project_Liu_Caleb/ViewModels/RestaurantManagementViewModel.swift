@@ -10,7 +10,7 @@ import SwiftUI
 
 final class RestaurantManagementViewModel: ObservableObject{
     //initialize meals in database
-    func initializeMeals(){
+    func loadExistingMealsFromDatabase(){
         
     }
     
@@ -25,17 +25,12 @@ final class RestaurantManagementViewModel: ObservableObject{
 //    }
     
     //passes the meals that were selected in the Checkout page
-    func checkoutMeals(){
+    func sendMealsToCheckout(){
         
     }
     
     //passes the order information to the ConfirmationMenu to display it back to user
-    func payOrder(){
-        
-    }
-    
-    //calculates the total cost of the order
-    func calculateTotalOrderCost(){
+    func confirmOrderClicked(){
         
     }
     

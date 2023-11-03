@@ -45,8 +45,8 @@ struct LandingPage: View {
                 }
                 .padding()
             }
-            .navigationBarHidden(true)
-        }
+            
+        }.navigationBarHidden(true)
     }
 }
 

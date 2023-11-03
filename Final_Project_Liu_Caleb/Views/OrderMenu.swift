@@ -17,6 +17,7 @@ struct NonRespondingButtonStyle: ButtonStyle {
 
 struct OrderMenu: View {
     @State private var mealQuantities: [Int] = Array(repeating: 0, count: 5)
+    @State private var isShowingLandingPage = false
 
     var body: some View {
         NavigationView {
@@ -69,7 +70,7 @@ struct OrderMenu: View {
                                         }
                                 ))
                                 .keyboardType(.numberPad)
-                                .frame(width: 50)
+                                .frame(width: 20)
 
                                 Button(action: {
                                     // Handle the - button action
@@ -97,7 +98,18 @@ struct OrderMenu: View {
                         .cornerRadius(10)
                         .padding(.top, 27)
                 }
-            }
+                
+                NavigationLink("", destination: LandingPage(), isActive: $isShowingLandingPage)
+                
+                
+            }.navigationBarItems(leading:
+                                    Button(action: {
+                                        isShowingLandingPage = true
+
+                                    }) {
+                                        Text("Home")
+                                    }
+                                )
         }
         .navigationBarHidden(true)
     }

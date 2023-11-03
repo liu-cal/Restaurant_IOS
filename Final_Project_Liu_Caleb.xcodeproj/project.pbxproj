@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6329B6F62B14E68B00F6B59B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6329B6F52B14E68B00F6B59B /* GoogleService-Info.plist */; };
 		633AE7672ADD68B700EB9573 /* Final_Project_Liu_CalebApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633AE7662ADD68B700EB9573 /* Final_Project_Liu_CalebApp.swift */; };
 		633AE7692ADD68B700EB9573 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633AE7682ADD68B700EB9573 /* ContentView.swift */; };
 		633AE76B2ADD68B800EB9573 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 633AE76A2ADD68B800EB9573 /* Assets.xcassets */; };
@@ -25,6 +26,7 @@
 		633AE7A82AE08B6000EB9573 /* LandingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633AE7A72AE08B6000EB9573 /* LandingPage.swift */; };
 		633AE7AA2AE08B6E00EB9573 /* SignUpPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633AE7A92AE08B6E00EB9573 /* SignUpPage.swift */; };
 		633AE7AC2AE08B8200EB9573 /* OrderMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633AE7AB2AE08B8200EB9573 /* OrderMenu.swift */; };
+		639542062B14D31F00376ABA /* RestaurantRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639542052B14D31F00376ABA /* RestaurantRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +47,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6329B6F52B14E68B00F6B59B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		633AE7632ADD68B700EB9573 /* Final_Project_Liu_Caleb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Final_Project_Liu_Caleb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		633AE7662ADD68B700EB9573 /* Final_Project_Liu_CalebApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Final_Project_Liu_CalebApp.swift; sourceTree = "<group>"; };
 		633AE7682ADD68B700EB9573 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -66,6 +69,7 @@
 		633AE7A72AE08B6000EB9573 /* LandingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingPage.swift; sourceTree = "<group>"; };
 		633AE7A92AE08B6E00EB9573 /* SignUpPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPage.swift; sourceTree = "<group>"; };
 		633AE7AB2AE08B8200EB9573 /* OrderMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderMenu.swift; sourceTree = "<group>"; };
+		639542052B14D31F00376ABA /* RestaurantRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +120,8 @@
 		633AE7652ADD68B700EB9573 /* Final_Project_Liu_Caleb */ = {
 			isa = PBXGroup;
 			children = (
+				6329B6F52B14E68B00F6B59B /* GoogleService-Info.plist */,
+				639542042B14D2F900376ABA /* Repository */,
 				633AE7922ADD696500EB9573 /* Models */,
 				633AE7912ADD695B00EB9573 /* Views */,
 				633AE7902ADD694800EB9573 /* ViewModels */,
@@ -182,6 +188,14 @@
 				633AE79B2ADD6EE900EB9573 /* Order.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		639542042B14D2F900376ABA /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				639542052B14D31F00376ABA /* RestaurantRepository.swift */,
+			);
+			path = Repository;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,6 +286,9 @@
 				Base,
 			);
 			mainGroup = 633AE75A2ADD68B700EB9573;
+			packageReferences = (
+				639542032B14D22F00376ABA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 633AE7642ADD68B700EB9573 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -290,6 +307,7 @@
 			files = (
 				633AE76E2ADD68B800EB9573 /* Preview Assets.xcassets in Resources */,
 				633AE76B2ADD68B800EB9573 /* Assets.xcassets in Resources */,
+				6329B6F62B14E68B00F6B59B /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,6 +344,7 @@
 				633AE7A82AE08B6000EB9573 /* LandingPage.swift in Sources */,
 				633AE7672ADD68B700EB9573 /* Final_Project_Liu_CalebApp.swift in Sources */,
 				633AE7A62AE08A7A00EB9573 /* LoginPage.swift in Sources */,
+				639542062B14D31F00376ABA /* RestaurantRepository.swift in Sources */,
 				633AE7A22AE089A900EB9573 /* Checkout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -485,7 +504,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Final_Project_Liu_Caleb/Preview Content\"";
-				DEVELOPMENT_TEAM = FSNB83DGLL;
+				DEVELOPMENT_TEAM = ZMR92Q7525;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -514,7 +533,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Final_Project_Liu_Caleb/Preview Content\"";
-				DEVELOPMENT_TEAM = FSNB83DGLL;
+				DEVELOPMENT_TEAM = ZMR92Q7525;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -651,6 +670,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		639542032B14D22F00376ABA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.18.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = 633AE75B2ADD68B700EB9573 /* Project object */;
 }

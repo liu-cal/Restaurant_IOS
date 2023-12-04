@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6329B6F62B14E68B00F6B59B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6329B6F52B14E68B00F6B59B /* GoogleService-Info.plist */; };
+		3C9EFBFE2B17F398007D77E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C9EFBFD2B17F398007D77E3 /* GoogleService-Info.plist */; };
+		3C9EFC002B1E1436007D77E3 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 3C9EFBFF2B1E1436007D77E3 /* FirebaseFirestore */; };
+		3C9EFC022B1E1436007D77E3 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3C9EFC012B1E1436007D77E3 /* FirebaseFirestoreSwift */; };
 		633AE7672ADD68B700EB9573 /* Final_Project_Liu_CalebApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633AE7662ADD68B700EB9573 /* Final_Project_Liu_CalebApp.swift */; };
 		633AE7692ADD68B700EB9573 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633AE7682ADD68B700EB9573 /* ContentView.swift */; };
 		633AE76B2ADD68B800EB9573 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 633AE76A2ADD68B800EB9573 /* Assets.xcassets */; };
@@ -47,7 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		6329B6F52B14E68B00F6B59B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3C9EFBFD2B17F398007D77E3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		633AE7632ADD68B700EB9573 /* Final_Project_Liu_Caleb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Final_Project_Liu_Caleb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		633AE7662ADD68B700EB9573 /* Final_Project_Liu_CalebApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Final_Project_Liu_CalebApp.swift; sourceTree = "<group>"; };
 		633AE7682ADD68B700EB9573 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -77,6 +79,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C9EFC002B1E1436007D77E3 /* FirebaseFirestore in Frameworks */,
+				3C9EFC022B1E1436007D77E3 /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,7 +124,7 @@
 		633AE7652ADD68B700EB9573 /* Final_Project_Liu_Caleb */ = {
 			isa = PBXGroup;
 			children = (
-				6329B6F52B14E68B00F6B59B /* GoogleService-Info.plist */,
+				3C9EFBFD2B17F398007D77E3 /* GoogleService-Info.plist */,
 				639542042B14D2F900376ABA /* Repository */,
 				633AE7922ADD696500EB9573 /* Models */,
 				633AE7912ADD695B00EB9573 /* Views */,
@@ -214,6 +218,10 @@
 			dependencies = (
 			);
 			name = Final_Project_Liu_Caleb;
+			packageProductDependencies = (
+				3C9EFBFF2B1E1436007D77E3 /* FirebaseFirestore */,
+				3C9EFC012B1E1436007D77E3 /* FirebaseFirestoreSwift */,
+			);
 			productName = Final_Project_Liu_Caleb;
 			productReference = 633AE7632ADD68B700EB9573 /* Final_Project_Liu_Caleb.app */;
 			productType = "com.apple.product-type.application";
@@ -307,7 +315,7 @@
 			files = (
 				633AE76E2ADD68B800EB9573 /* Preview Assets.xcassets in Resources */,
 				633AE76B2ADD68B800EB9573 /* Assets.xcassets in Resources */,
-				6329B6F62B14E68B00F6B59B /* GoogleService-Info.plist in Resources */,
+				3C9EFBFE2B17F398007D77E3 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -681,6 +689,17 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3C9EFBFF2B1E1436007D77E3 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FirebaseFirestore;
+		};
+		3C9EFC012B1E1436007D77E3 /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FirebaseFirestoreSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 633AE75B2ADD68B700EB9573 /* Project object */;
 }

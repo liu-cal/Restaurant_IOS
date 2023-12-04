@@ -5,11 +5,22 @@
 //  Created by macuser on 2023-10-16.
 //
 
-import SwiftUI
+import FirebaseFirestoreSwift
+import Foundation
 
-struct Delivery: Identifiable{
-    var id: Int
-    let address: String
-    let deliveryTime: String
-    let totalCost: Decimal
+struct Delivery: Identifiable, Codable{
+    @DocumentID var id: String?
+    var address: String = ""
+    var deliveryTime: String=""
+    var totalCost: Decimal=0.0
+    
+    init(){
+        
+    }
+    
+    init(address: String, deliveryTime: String, totalCost: Decimal){
+        self.address=address
+        self.deliveryTime=deliveryTime
+        self.totalCost=totalCost
+    }
 }

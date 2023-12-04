@@ -5,10 +5,17 @@
 //  Created by macuser on 2023-10-16.
 //
 
-import SwiftUI
+import FirebaseFirestoreSwift
+import Foundation
 
-struct Meal: Identifiable{
-    var id: Int
-    let name: String
-    let price: Decimal
+struct Meal: Identifiable, Codable{
+    @DocumentID var id: String?
+    var name: String = ""
+    var price: Decimal = 0.0
+    
+    init(){}
+    init(name: String, price: Decimal){
+        self.name=name
+        self.price=price
+    }
 }

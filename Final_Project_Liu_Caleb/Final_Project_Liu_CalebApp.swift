@@ -6,7 +6,8 @@
 //
 
 import SwiftUI
-import Firebase
+
+
 @main
 struct Final_Project_Liu_CalebApp: App {
     

@@ -11,13 +11,14 @@ struct Order: Identifiable, Codable{
     @DocumentID var id: String?
     var mealName: String=""
     var quantity: String=""
-    var deliveryId: Int=0
+    var deliveryId: String=""
     
     init(){
         
     }
     
-    init(mealName: String, quantity: String, deliveryId: Int){
+    init(id: String, mealName: String, quantity: String, deliveryId: String){
+        self.id=id
         self.mealName=mealName
         self.quantity=quantity
         self.deliveryId=deliveryId

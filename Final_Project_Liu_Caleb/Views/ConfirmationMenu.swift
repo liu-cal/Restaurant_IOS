@@ -9,9 +9,10 @@ import SwiftUI
 
 struct ConfirmationMenu: View{
     @State private var showKeepShoppingAlert = false
-        @State private var showLogoutAlert = false
+    @State private var showLogoutAlert = false
     @State private var isShowingOrderMenu = false
     @State private var isShowingLoginPage = false
+    @ObservedObject var viewModel: RestaurantManagementViewModel
     
     var body: some View{
         NavigationView{
@@ -28,24 +29,29 @@ struct ConfirmationMenu: View{
                 VStack{
                     Spacer()
                     
-                    Text("Thank you for ordering at Liu's Restaurant!")
+                    Text("Thank you for ordering at Liu's Restaurant \(viewModel.name)!")
                         .font(.title)
                         .fontWeight(.bold)
                         .foregroundColor(.white)
                         .multilineTextAlignment(.center)
                         .frame(maxWidth: 350)
                     Spacer()
-                    Text("Total Cost: $100.00")
+                    Text("Total Cost: \(viewModel.totalCost.description)$")
                         .font(.headline)
                         .foregroundColor(.white)
                         .padding(.top, 20)
                     
-                    Text("Estimated Delivery Time: 30 minutes")
+                    Text("Estimated Delivery Time: \(viewModel.newDelivery.deliveryTime)")
+                        .font(.subheadline)
+                        .foregroundColor(.white)
+                    
+                    Text("Address: \(viewModel.newDelivery.address)")
                         .font(.subheadline)
                         .foregroundColor(.white)
                         .padding(.bottom, 20)
                     
-                    NavigationLink("", destination: OrderMenu(), isActive: $isShowingOrderMenu)
+                    
+                    NavigationLink("", destination: OrderMenu(viewModel: viewModel), isActive: $isShowingOrderMenu)
                     
                     NavigationLink("", destination: LoginPage(), isActive: $isShowingLoginPage)
                     
@@ -62,6 +68,8 @@ struct ConfirmationMenu: View{
                     }
                     .alert(isPresented: $showKeepShoppingAlert) {
                         Alert(title: Text("Keep Shopping"), message: Text("Continue shopping at Liu's Restaurant?"), primaryButton: .default(Text("Yes"), action: {
+                            viewModel.clear()
+
                             isShowingOrderMenu = true
                         }), secondaryButton: .cancel(Text("No")))
                     }
@@ -79,6 +87,8 @@ struct ConfirmationMenu: View{
                     }
                     .alert(isPresented: $showLogoutAlert) {
                         Alert(title: Text("Log Out"), message: Text("Are you sure you want to log out?"), primaryButton: .default(Text("Yes"), action: {
+                            viewModel.logout()
+
                             isShowingLoginPage=true
                         }), secondaryButton: .cancel(Text("No")))
                     }
@@ -89,8 +99,3 @@ struct ConfirmationMenu: View{
     }
 }
 
-struct ConfirmationMenu_Previews: PreviewProvider {
-    static var previews: some View {
-        ConfirmationMenu()
-    }
-}

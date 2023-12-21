@@ -8,14 +8,17 @@
 import SwiftUI
 
 struct Checkout: View{
-        @State private var quantity = 1
-        @State private var address = ""
-        @State private var totalCost = 0.0
-        @State private var isShowingConfirmationMenu = false
-        @State private var isShowingOrderMenu = false
-        @State private var isShowingLandingPage = false
-        @State private var showCancelAlert = false
-
+    @State private var quantity = 1
+    @State private var address = ""
+    @State private var totalCost = 0.0
+    @State private var isShowingConfirmationMenu = false
+    @State private var isShowingOrderMenu = false
+    @State private var isShowingLandingPage = false
+    @State private var showCancelAlert = false
+    @State private var enablePayButton = false
+    @ObservedObject var viewModel: RestaurantManagementViewModel
+    @State private var showEmptyAddressAlert=true
+    
     var body: some View{
         NavigationView {
             VStack {
@@ -23,47 +26,25 @@ struct Checkout: View{
                     HStack {
                         Text("Meal Name")
                             .fontWeight(.bold)
-                        Spacer()
-                        Text("Price")
-                            .fontWeight(.bold)
+
                         Spacer()
                         Text("Qty")
                             .fontWeight(.bold)
                             .padding(.horizontal, 30)
                     }
                     
-                    HStack {
-                        Text("Your Meal Name")
-                        Spacer()
-                        Text("$10.99")
-                        Spacer()
-                        
-                        Button(action: {
-                            // Handle the + button action
-                            quantity += 1
-                        }) {
-                            Image(systemName: "plus.circle")
-                        }
-                        .frame(width: 40, height: 40)
-                        
-                        TextField("Quantity", value: $quantity, formatter: NumberFormatter())
-                            .keyboardType(.numberPad)
-                            .frame(width: 20)
-                        
-                        Button(action: {
-                            // Handle the - button action
-                            if quantity > 0 {
-                                quantity -= 1
-                            }
-                        }) {
-                            Image(systemName: "minus.circle")
-                        }
-                    }
+                    ForEach(viewModel.orderList) { order in
+                                            HStack {
+                                                Text(order.mealName)
+                                                Spacer()
+                                                Text(order.quantity)
+                                            }
+                                        }
                 }.buttonStyle(BorderlessButtonStyle())
                 
                 Spacer()
                 
-                Text("Total Price: $\(String(format: "%.2f", Double(quantity) * 10.99))")
+                Text("Total Price: $\(viewModel.totalCost)")
                     .font(.title)
                     .fontWeight(.bold)
                     .padding(.bottom, 5)
@@ -72,16 +53,27 @@ struct Checkout: View{
                 TextField("Enter Your Address", text: $address)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding(.horizontal, 20)
+                    .onChange(of: address) { newValue in
+                            enablePayButton = !newValue.isEmpty
+                        }
                 
-                NavigationLink("", destination: ConfirmationMenu(), isActive: $isShowingConfirmationMenu)
+                NavigationLink("", destination: ConfirmationMenu(viewModel: viewModel), isActive: $isShowingConfirmationMenu)
                 
-                NavigationLink("", destination: OrderMenu(), isActive: $isShowingOrderMenu)
+                NavigationLink("", destination: OrderMenu(viewModel: viewModel), isActive: $isShowingOrderMenu)
                 
-                NavigationLink("", destination: LandingPage(), isActive: $isShowingLandingPage)
+                NavigationLink("", destination: LandingPage(viewModel: viewModel), isActive: $isShowingLandingPage)
                                 
                 Button(action: {
-                    isShowingConfirmationMenu = true
-                    
+                    if enablePayButton{
+                        // Call the viewModel function to update the delivery information
+                        viewModel.confirmOrderClicked(deliveryAddress: address)
+                        
+                        // Proceed to the Confirmation Menu page
+                        isShowingConfirmationMenu = true
+                    } else {
+                        // Show an alert if the address is empty and pay button is pressed
+                        showEmptyAddressAlert = true
+                    }
                 }) {
                     Text("Pay")
                         .font(.title)
@@ -89,6 +81,12 @@ struct Checkout: View{
                         .frame(width: 200, height: 50)
                         .background(Color.green)
                         .cornerRadius(10)
+                }
+                .alert(isPresented: Binding(
+                    get: { showEmptyAddressAlert },
+                    set: { newValue in showEmptyAddressAlert = newValue }
+                ))  {
+                    Alert(title: Text("Address is Empty"), message: Text("Please enter your address before proceeding."), dismissButton: .default(Text("OK")))
                 }
                 
                 Button(action: {
@@ -103,23 +101,20 @@ struct Checkout: View{
                 }
                 .alert(isPresented: $showCancelAlert) {
                     Alert(title: Text("Cancel Order"), message: Text("Are you sure you want to cancel your order?"), primaryButton: .default(Text("Yes"), action: {
+                        viewModel.clear()
+
                         isShowingLandingPage = true
                     }), secondaryButton: .cancel(Text("No")))
                 }
                 
             }.navigationBarItems(leading:
-                                    Button(action: {
-                                        isShowingOrderMenu = true
-                                    }) {
-                                        Text("Back")
-                                    }
-                                )
+                Button(action: {
+                    viewModel.orderList=[]
+                
+                    isShowingOrderMenu = true
+                }) {
+                    Text("Back")
+                })
         }.navigationBarHidden(true)
-    }
-}
-
-struct Checkout_Previews: PreviewProvider {
-    static var previews: some View {
-        Checkout()
     }
 }

@@ -23,4 +23,11 @@ struct Delivery: Identifiable, Codable{
         self.deliveryTime=deliveryTime
         self.totalCost=totalCost
     }
+    
+    init(id: String, address: String, deliveryTime: String, totalCost: Decimal){
+        self.id=id
+        self.address=address
+        self.deliveryTime=deliveryTime
+        self.totalCost=totalCost
+    }
 }

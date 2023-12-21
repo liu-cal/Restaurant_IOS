@@ -29,7 +29,7 @@ class RestaurantRepository: ObservableObject{
             self.mealList = snapshot?.documents.compactMap {
                 try? $0.data(as: Meal.self)
             } ?? []
-            print(self.mealList)
+            //print(self.mealList)
         }
     }
     
@@ -73,31 +73,34 @@ class RestaurantRepository: ObservableObject{
         }
     }
     
-    func getCustomer(byName name: String, completion: @escaping (Customer?) -> Void) {
-            let query = restaurant.collection(customerPath).whereField("name", isEqualTo: name)
+    func getCustomer(byUsername username: String, password: String, completion: @escaping (Customer?) -> Void) {
+        let query = restaurant.collection(customerPath)
+            .whereField("username", isEqualTo: username)
+            .whereField("password", isEqualTo: password)
 
-            query.getDocuments { (snapshot, error) in
-                if let error = error {
-                    print(error.localizedDescription)
-                    completion(nil)
-                    return
-                }
+        query.getDocuments { (snapshot, error) in
+            if let error = error {
+                print(error.localizedDescription)
+                completion(nil)
+                return
+            }
 
-                guard let document = snapshot?.documents.first else {
-                    // No document found with the given name
-                    completion(nil)
-                    return
-                }
+            guard let document = snapshot?.documents.first else {
+                // No document found with the given username and password
+                completion(nil)
+                return
+            }
 
-                do {
-                    let customer = try document.data(as: Customer.self)
-                    completion(customer)
-                } catch {
-                    print("Error decoding customer: \(error.localizedDescription)")
-                    completion(nil)
-                }
+            do {
+                let customer = try document.data(as: Customer.self)
+                completion(customer)
+            } catch {
+                print("Error decoding customer: \(error.localizedDescription)")
+                completion(nil)
             }
         }
+    }
+
     
     func addCustomer(_ customer: Customer){
         do {
@@ -143,13 +146,14 @@ class RestaurantRepository: ObservableObject{
             self.orderList = snapshot?.documents.compactMap {
                 try? $0.data(as: Order.self)
             } ?? []
-            print(self.orderList)
+//            print(self.orderList)
         }
     }
     
     func addOrder(_ order: Order){
         do {
             _ = try restaurant.collection(orderPath).addDocument(from: order)
+//            print(order)
         }
         catch{
             fatalError("Adding Order Failed.")
@@ -251,9 +255,11 @@ class RestaurantRepository: ObservableObject{
             }
         }
     
-    func addDelivery(_ delivery: Delivery){
+    func addDelivery(_ delivery: Delivery) -> String? {
         do {
-            _ = try restaurant.collection(deliveryPath).addDocument(from: delivery)
+            let documentReference = try restaurant.collection(deliveryPath).addDocument(from: delivery)
+            
+            return documentReference.documentID
         }
         catch{
             fatalError("Adding Delivery Failed.")

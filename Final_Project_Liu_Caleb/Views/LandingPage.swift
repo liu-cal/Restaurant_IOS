@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct LandingPage: View {
+    @ObservedObject var viewModel: RestaurantManagementViewModel
+
     var body: some View {
         NavigationView {
             ZStack {
@@ -32,7 +34,7 @@ struct LandingPage: View {
                     
                     Spacer()
                     
-                    NavigationLink(destination: OrderMenu()) {
+                    NavigationLink(destination: OrderMenu(viewModel: viewModel)) {
                         Text("Order Now")
                             .font(.title)
                             .fontWeight(.bold)
@@ -51,9 +53,3 @@ struct LandingPage: View {
 }
 
 
-
-struct LandingPage_Previews: PreviewProvider {
-    static var previews: some View {
-        LandingPage()
-    }
-}

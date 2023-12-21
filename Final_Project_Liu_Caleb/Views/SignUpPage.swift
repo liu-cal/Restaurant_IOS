@@ -13,6 +13,7 @@ struct SignUpPage: View {
     @State private var username = ""
     @State private var password = ""
     @State private var isShowingLoginPage = false
+    @ObservedObject var viewModel = RestaurantManagementViewModel()
 
     var body: some View {
         NavigationView {
@@ -36,7 +37,11 @@ struct SignUpPage: View {
                 NavigationLink("", destination: LoginPage(), isActive: $isShowingLoginPage)
                 
                 Button(action: {
-                    isShowingLoginPage = true
+                    // Call the signUp function in the viewModel
+                                        viewModel.signUp(firstName: firstName, lastName: lastName, username: username, password: password)
+
+                                        // Route to the login page if no fields are left empty
+                                        isShowingLoginPage = !firstName.isEmpty && !lastName.isEmpty && !username.isEmpty && !password.isEmpty
                 }) {
                     Text("Sign Up")
                         .padding()

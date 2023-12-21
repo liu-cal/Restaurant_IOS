@@ -10,6 +10,7 @@ import SwiftUI
 struct LoginPage: View {
     @State private var username = ""
     @State private var password = ""
+    @ObservedObject var viewModel = RestaurantManagementViewModel()
 
     @State private var loginSuccessful = false
 
@@ -25,10 +26,16 @@ struct LoginPage: View {
                     .padding()
                 
                 Button(action: {
-                    // Add your login logic here
-                    // You can check the entered username and password
-                    // If login is successful, set loginSuccessful to true
-                    loginSuccessful = true
+                    viewModel.login(username: username, password: password) { success in
+                                            if success {
+                                                // Navigate to LandingPage
+                                                loginSuccessful = true
+                                            } else {
+                                                // Stay on the same page or show an error message
+                                                // For simplicity, let's just print an error message
+                                                print("Login failed. Stay on the same page or show an error message.")
+                                            }
+                                        }
                 }) {
                     Text("Log In")
                         .padding()
@@ -47,7 +54,7 @@ struct LoginPage: View {
                 }
             )
             .background(
-                NavigationLink("", destination: LandingPage(), isActive: $loginSuccessful)
+                NavigationLink("", destination: LandingPage(viewModel: viewModel), isActive: $loginSuccessful)
             )
         }
         .navigationBarHidden(true)

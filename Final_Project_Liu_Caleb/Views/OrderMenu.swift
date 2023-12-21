@@ -16,8 +16,10 @@ struct NonRespondingButtonStyle: ButtonStyle {
 }
 
 struct OrderMenu: View {
-    @State private var mealQuantities: [Int] = Array(repeating: 0, count: 5)
     @State private var isShowingLandingPage = false
+    @State private var isShowingCheckout = false
+    @ObservedObject var viewModel: RestaurantManagementViewModel
+    @State private var showAlert = false
 
     var body: some View {
         NavigationView {
@@ -35,17 +37,24 @@ struct OrderMenu: View {
                         Spacer()
                     }
 
-                    ForEach(0 ..< 5, id: \.self) { index in
+                    ForEach(viewModel.mealList) { meal in
                         HStack {
-                            Text("Your Meal Name")
+                            Text(meal.name)
                             Spacer()
-                            Text("$10.99")
+                            Text(String(describing: meal.price))
                             Spacer()
 
                                 Button(action: {
                                     // Handle the + button action
-                                    mealQuantities[index] += 1
-
+                                    if let mealID = meal.id {
+                                                                        if let quantity = viewModel.mealQuantities[mealID] {
+                                                                            viewModel.mealQuantities[mealID] = quantity + 1
+                                                                        } else {
+                                                                            viewModel.mealQuantities[mealID] = 1
+                                                                        }
+                                                                    } else {
+                                        print("Error: Invalid meal ID")
+                                    }
                                 }) {
                                     Image(systemName: "plus.circle")
                                         .background(Color.clear)
@@ -56,28 +65,39 @@ struct OrderMenu: View {
                                 .background(Color.clear)
                                 .zIndex(1)
 
-                                TextField("Quantity", text: Binding(
-                                    get: {
-                                        String(mealQuantities[index])
-                                    },
-                                    set: { newValue in
-                                            if let quantity = Int(newValue) {
-                                                mealQuantities[index] = quantity
-                                            } else {
-                                                print("Invalid quantity: \(newValue)")
-                                                mealQuantities[index]=0
-                                            }
+                            TextField("Quantity", text: Binding(
+                                get: {
+                                                                    if let mealID = meal.id {
+                                                                        if let quantity = viewModel.mealQuantities[mealID] {
+                                                                            return String(quantity)
+                                                                        }
+                                    }
+                                    return ""
+                                },
+                                set: { newValue in
+                                    if let mealID = meal.id {
+                                        // Assuming mealID is a string
+                                        if let quantity = Int(newValue) {
+                                            viewModel.mealQuantities[mealID] = quantity
+                                        } else {
+                                            print("Invalid quantity: \(newValue)")
+                                            viewModel.mealQuantities[mealID] = 0
                                         }
-                                ))
+                                    }
+                                }
+                            ))
+
                                 .keyboardType(.numberPad)
                                 .frame(width: 20)
 
-                                Button(action: {
-                                    // Handle the - button action
-                                    if mealQuantities[index] > 0 {
-                                        mealQuantities[index] -= 1
-                                    }
-                                }) {
+                            Button(action: {
+                                // Handle the - button action
+                                if let mealID = meal.id {
+                                                                    if let quantity = viewModel.mealQuantities[mealID], quantity > 0 {
+                                                                        viewModel.mealQuantities[mealID] = quantity - 1
+                                                                    }
+                                                                }
+                            }) {
                                     Image(systemName: "minus.circle")
                                         .background(Color.clear)
                                         .contentShape(Rectangle())
@@ -89,7 +109,7 @@ struct OrderMenu: View {
                     }.buttonStyle(BorderlessButtonStyle())
                 }
 
-                NavigationLink(destination: Checkout()) {
+                NavigationLink(destination: Checkout(viewModel: viewModel), isActive: $isShowingCheckout) {
                     Text("Checkout")
                         .font(.title)
                         .foregroundColor(.white)
@@ -98,26 +118,37 @@ struct OrderMenu: View {
                         .cornerRadius(10)
                         .padding(.top, 27)
                 }
+                .simultaneousGesture(TapGesture().onEnded {
+                    // Check if all quantities are greater than 0
+                    if viewModel.mealQuantities.values.contains(where:{ $0 > 0 }) {
+                        // All quantities are greater than 0, proceed to Checkout
+                        viewModel.sendMealsToCheckout()
+                        isShowingCheckout = true
+                    } else {
+                        showAlert = true
+                    }
+                })
+                .alert(isPresented: $showAlert) {
+                    Alert(
+                        title: Text("Cannot Process to Checkout"),
+                        message: Text("Please ensure that the quantities for all meals are greater than 0."),
+                        dismissButton: .default(Text("OK"))
+                    )
+                }
+
                 
-                NavigationLink("", destination: LandingPage(), isActive: $isShowingLandingPage)
+                NavigationLink("", destination: LandingPage(viewModel: viewModel), isActive: $isShowingLandingPage)
                 
                 
             }.navigationBarItems(leading:
-                                    Button(action: {
-                                        isShowingLandingPage = true
+                Button(action: {
+                    viewModel.clear()
+                    isShowingLandingPage = true
 
-                                    }) {
-                                        Text("Home")
-                                    }
-                                )
-        }
+                    }) {
+                        Text("Home")
+                        }
+                )}
         .navigationBarHidden(true)
-    }
-}
-
-
-struct OrderMenu_Previews: PreviewProvider {
-    static var previews: some View {
-        OrderMenu()
     }
 }
